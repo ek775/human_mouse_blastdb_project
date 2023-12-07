@@ -26,7 +26,7 @@ for blast_result in NCBIXML.parse(result_handle):
                                     'expect': hsp.expect, 
                                     'score': hsp.score,
                                     'query': hsp.query,
-                                    'subject': hsp.subject,
+                                    'subject': hsp.subjct,
                                     'match': hsp.match}, 
                                     index=[0])
                 data.append(dfi)
