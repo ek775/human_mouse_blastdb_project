@@ -56,7 +56,7 @@ df = pd.read_csv(file_1)
 print('Populating Table...')
 for i, row in df.iterrows():
     row = row[1:]
-    Cursor.execute(f"""INSERT INTO {file_1[:-4]} VALUES(?,?,?,?,?,?,?,?,?,?)""", row)
+    Cursor.execute(f"""INSERT INTO {file_1[:-4]} VALUES (?,?,?,?,?,?,?,?,?,?)""", row)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
 
@@ -70,7 +70,7 @@ df = pd.read_csv(file_2)
 print('Populating Table...')
 for i, row in df.iterrows():
     row = row[1:]
-    Cursor.execute(f"""INSERT INTO {file_2[:-4]} VALUES(?,?,?,?,?,?,?,?,?,?)""", row)
+    Cursor.execute(f"""INSERT INTO {file_2[:-4]} VALUES (?,?,?,?,?,?,?,?,?,?)""", row)
 PairwiseConnection.commit()
 print("----- Second Blast Table Created -----")
 
