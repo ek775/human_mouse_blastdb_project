@@ -54,7 +54,7 @@ print(f"Reading in {file_1}...")
 df = pd.read_csv(file_1)
 
 print('Populating Table...')
-df = [row for i, row in df.iterrows]
+df = [row for i, row in df.iterrows()]
 Cursor.executemany(f"""INSERT INTO {file_1[:-4]} VALUES(?)""", df)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
@@ -67,7 +67,7 @@ print(f"Reading in {file_2}...")
 df = pd.read_csv(file_2)
 
 print('Populating Table...')
-df = [row for i, row in df.iterrows]
+df = [row for i, row in df.iterrows()]
 Cursor.executemany(f"""INSERT INTO {file_2[:-4]} VALUES(?)""", df)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
