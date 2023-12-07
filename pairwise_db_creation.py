@@ -7,9 +7,8 @@ python pairwise_db_creation.py [extracted_alignments_1].csv [extracted_alignment
 """
 #import packages
 import sys, os
-import numpy as np
+import pandas as pd
 import sqlite3
-import csv
 
 #CLI + input checks
 file_1 = sys.argv[1]
@@ -52,11 +51,10 @@ print("----- Done -----")
 
 ### insert file 1
 print(f"Reading in {file_1}...")
-with open(file_1, 'r') as x:
-    df = list(csv.reader(x, delimiter=","))
-df = np.array(df)
+df = pd.read_csv(file_1)
 
 print('Populating Table...')
+df = [row for i, row in df.iterrows]
 Cursor.executemany(f"""INSERT INTO {file_1[:-4]} VALUES(?)""", df)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
@@ -66,11 +64,10 @@ print(Cursor.execute(f"SELECT accession FROM {file_1[:-4]} LIMIT 5").fetchall())
 
 ### insert file 2
 print(f"Reading in {file_2}...")
-with open(file_2, 'r') as x:
-    df = list(csv.reader(x, delimiter=","))
-df = np.array(df)
+df = pd.read_csv(file_2)
 
 print('Populating Table...')
+df = [row for i, row in df.iterrows]
 Cursor.executemany(f"""INSERT INTO {file_2[:-4]} VALUES(?)""", df)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
