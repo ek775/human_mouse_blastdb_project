@@ -19,17 +19,17 @@ for blast_result in NCBIXML.parse(result_handle):
         for hsp in alignment.hsps:
             print(hsp)
             if hsp.expect < 1e-5:
-                dfi = pd.DataFrame({'accession':alignment.accession, 
-                                    'hit_id':alignment.hit_id, 
+                dfi = pd.DataFrame({'accession': alignment.accession, 
+                                    'hit_id': alignment.hit_id, 
                                     'hit_def': alignment.hit_def,
                                     'hit_num': alignment.hit_num,
-                                    'hit_len':alignment.hit_len,
-                                    'expect':hsp.expect, 
-                                    'score':hsp.score,
-                                    'identity':hsp.identity, 
-                                    'query_seq':hsp.qseq,
-                                    'hit_seq':hsp.hseq, 
-                                    'gaps':hsp.gaps}, 
+                                    'hit_len': hsp.align_length,
+                                    'expect': hsp.expect, 
+                                    'score': hsp.score,
+                                    'identity': hsp.identity, 
+                                    'query_seq': hsp.qseq,
+                                    'hit_seq': hsp.hseq, 
+                                    'gaps': hsp.gaps}, 
                                     index=[0])
                 data.append(dfi)
 df = pd.concat(data, ignore_index=True)
