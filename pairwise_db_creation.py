@@ -55,7 +55,7 @@ df = pd.read_csv(file_1)
 
 print('Populating Table...')
 for i, row in df.iterrows():
-    Cursor.execute(f"""INSERT INTO {file_1[:-4]} VALUES(?,?,?,?,?,?,?,?,?,?)""", df)
+    Cursor.execute(f"""INSERT INTO {file_1[:-4]} VALUES(?,?,?,?,?,?,?,?,?,?)""", row)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
 
