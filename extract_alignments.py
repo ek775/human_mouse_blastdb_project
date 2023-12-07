@@ -15,13 +15,13 @@ assert file[-4:]==".xml"
 data = []
 result_handle = open(file)
 for blast_result in NCBIXML.parse(result_handle):
-    for alignment in blast_result.alignments:
+    for hit_num, alignment in enumerate(blast_result.alignments, start=1):
         for hsp in alignment.hsps:
             if hsp.expect < 1e-5:
                 dfi = pd.DataFrame({'accession': alignment.accession, 
                                     'hit_id': alignment.hit_id, 
                                     'hit_def': alignment.hit_def,
-                                    'hit_num': alignment.num,
+                                    'hit_num': hit_num,
                                     'hit_len': hsp.align_length,
                                     'expect': hsp.expect, 
                                     'score': hsp.score,
