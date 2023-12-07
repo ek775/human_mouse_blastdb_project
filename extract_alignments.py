@@ -17,12 +17,11 @@ result_handle = open(file)
 for blast_result in NCBIXML.parse(result_handle):
     for alignment in blast_result.alignments:
         for hsp in alignment.hsps:
-            print(hsp)
             if hsp.expect < 1e-5:
                 dfi = pd.DataFrame({'accession': alignment.accession, 
                                     'hit_id': alignment.hit_id, 
                                     'hit_def': alignment.hit_def,
-                                    'hit_num': alignment.hit_num,
+                                    'hit_num': alignment.num,
                                     'hit_len': hsp.align_length,
                                     'expect': hsp.expect, 
                                     'score': hsp.score,
