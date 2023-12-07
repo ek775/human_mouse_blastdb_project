@@ -25,10 +25,9 @@ for blast_result in NCBIXML.parse(result_handle):
                                     'hit_len': hsp.align_length,
                                     'expect': hsp.expect, 
                                     'score': hsp.score,
-                                    'identity': hsp.identity, 
-                                    'query_seq': hsp.qseq,
-                                    'hit_seq': hsp.hseq, 
-                                    'gaps': hsp.gaps}, 
+                                    'query': hsp.query,
+                                    'subject': hsp.subject,
+                                    'match': hsp.match}, 
                                     index=[0])
                 data.append(dfi)
 df = pd.concat(data, ignore_index=True)
