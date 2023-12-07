@@ -53,7 +53,7 @@ print("----- Done -----")
 ### insert file 1
 print(f"Reading in {file_1}...")
 with open(file_1, 'r') as x:
-    df = list(csv.reader(x, delimieter=","))
+    df = list(csv.reader(x, delimiter=","))
 df = np.array(df)
 
 print('Populating Table...')
@@ -67,7 +67,7 @@ print(Cursor.execute(f"SELECT accession FROM {file_1[:-4]} LIMIT 5").fetchall())
 ### insert file 2
 print(f"Reading in {file_2}...")
 with open(file_2, 'r') as x:
-    df = list(csv.reader(x, delimieter=","))
+    df = list(csv.reader(x, delimiter=","))
 df = np.array(df)
 
 print('Populating Table...')
