@@ -16,7 +16,6 @@ assert file[-4:]==".xml"
 data = []
 result_handle = open(file)
 for blast_result in NCBIXML.parse(result_handle):
-    print(blast_result)
     for hit_num, alignment in enumerate(blast_result.alignments, start=1):
         for hsp in alignment.hsps:
             if hsp.expect < 1e-5:
@@ -33,12 +32,12 @@ for blast_result in NCBIXML.parse(result_handle):
                                     index=[0])
                 data.append(dfi)
 print("Aggregating Data...")
-df = pd.concat(data, ignore_index=True)
+data = pd.concat(data, ignore_index=True)
 
 #export df as csv
 print("Exporting data to CSV...")
 out = f"{file[:-4]}.csv"
-df.to_csv(out)
+data.to_csv(out)
 print(f"Data saved as {out}")
 
 
