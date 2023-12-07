@@ -54,18 +54,8 @@ print(f"Reading in {file_1}...")
 df = pd.read_csv(file_1)
 
 print('Populating Table...')
-df = [[row['accession'],
-       row['hit_id'],
-       row['hit_def'],
-       row['hit_num'], 
-       row['hit_len'], 
-       row['expect'], 
-       row['score'], 
-       row['query'], 
-       row['subject'], 
-       row['match']
-       ] for i, row in df.iterrows()]
-Cursor.executemany(f"""INSERT INTO {file_1[:-4]} VALUES(?)""", df)
+for i, row in df.iterrows():
+    Cursor.executemany(f"""INSERT INTO {file_1[:-4]} VALUES(?)""", df)
 PairwiseConnection.commit()
 print("----- First Blast Table Created -----")
 
@@ -77,18 +67,8 @@ print(f"Reading in {file_2}...")
 df = pd.read_csv(file_2)
 
 print('Populating Table...')
-df = [[row['accession'],
-       row['hit_id'],
-       row['hit_def'],
-       row['hit_num'], 
-       row['hit_len'], 
-       row['expect'], 
-       row['score'], 
-       row['query'], 
-       row['subject'], 
-       row['match']
-       ] for i, row in df.iterrows()]
-Cursor.executemany(f"""INSERT INTO {file_2[:-4]} VALUES(?)""", df)
+for i, row in df.iterrows():
+    Cursor.execute(f"""INSERT INTO {file_2[:-4]} VALUES(?)""", row)
 PairwiseConnection.commit()
 print("----- Second Blast Table Created -----")
 
