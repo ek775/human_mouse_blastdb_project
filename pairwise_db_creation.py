@@ -6,8 +6,8 @@ Run this script from the command line to set up a simple database using the form
 python pairwise_db_creation.py [extracted_alignments_1].csv [extracted_alignments_2].csv
 """
 #import packages
-import sys
-import pandas as pd
+import sys, os
+import numpy as np
 import sqlite3
 
 #CLI + input checks
@@ -21,7 +21,10 @@ assert file_2[-4:]==".csv"
 
 ### MAIN ###
 
-#establish database
+#check/clear namespace
+os.system('rm pairwise_blast.db') 
+
+### establish database
 try: 
     # Making a connection to sqlite3 database
     sqliteConnection = sqlite3.connect('pairwise_blast.db') 
@@ -48,7 +51,7 @@ print("----- Done -----")
 
 ### insert file 1
 print(f"Reading in {file_1}...")
-df = pd.read_csv(file_1)
+df = np.loadtxt(file_1, delimiter=",", dtype=str)
 
 print('Populating Table...')
 Cursor.executemany(f"""INSERT INTO {file_1[:-4]} VALUES(?)""", df)
@@ -60,7 +63,7 @@ print(Cursor.execute(f"SELECT accession FROM {file_1[:-4]} LIMIT 5").fetchall())
 
 ### insert file 2
 print(f"Reading in {file_2}...")
-df = pd.read_csv(file_2)
+df = np.loadtxt(file_2, delimiter=",", dtype=str)
 
 print('Populating Table...')
 Cursor.executemany(f"""INSERT INTO {file_2[:-4]} VALUES(?)""", df)
