@@ -29,14 +29,15 @@ while q==True:
     #prompted query
     _select_ = input("SELECT:")
     _from_ = input("FROM:")
+    _inner_join_ = input("INNER JOIN:")
     _where_ = input("WHERE:")
-    _groupby_ = input("GROUPBY:")
+    _groupby_ = input("GROUP BY:")
     _having_ = input("HAVING:")
     _orderby_ = input("ORDER BY:")
     _limit_ = input("LIMIT:")
     
-    params = [_select_, _from_, _where_, _groupby_, _having_, _orderby_, _limit_]
-    param_names = ['SELECT', 'FROM', 'WHERE', 'GROUP BY', 'HAVING', 'ORDER BY', 'LIMIT']
+    params = [_select_, _from_, _inner_join_, _where_, _groupby_, _having_, _orderby_, _limit_]
+    param_names = ['SELECT', 'FROM', 'INNER JOIN', 'WHERE', 'GROUP BY', 'HAVING', 'ORDER BY', 'LIMIT']
 
     #clean params, generate sql
     sql = ""
