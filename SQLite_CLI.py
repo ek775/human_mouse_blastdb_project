@@ -39,8 +39,7 @@ while q==True:
     
     #clean params
     for i in params:
-        i=''.join(i.split().strip())
-        i=''.join(char for char in i if char.isalnum())
+        i=''.join(i.split())
         if i==None:
             i=''
         
