@@ -42,7 +42,7 @@ while q==True:
     sql = ""
     for i,j in enumerate(params):
         j=''.join(j.split())
-        if j != None:
+        if (j != None):
             sql.join(param_names[i]+' '+j+' ')
         else:
             continue
@@ -56,7 +56,7 @@ while q==True:
         #attempt query
         try:
             result = Cursor.execute(sql)
-            result.fetchall()
+            print(result.fetchall())
         except sqlite3.Error as error:
             print("Bad query:", error)
     #if denied, try query entry again
