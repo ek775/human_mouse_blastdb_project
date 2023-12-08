@@ -22,8 +22,8 @@ except:
 ### MAIN ###
 q = True
 while q==True:
-    j = input("Enter Query? [press enter or type 'q' to quit]")
-    if j.strip()=='q':
+    query = input("Enter Query? [press enter or type 'q' to quit]")
+    if query.strip()=='q':
         exit(0)
 
     #prompted query
@@ -36,42 +36,26 @@ while q==True:
     _limit_ = input("LIMIT:")
     
     params = [_select_, _from_, _where_, _groupby_, _having_, _orderby_, _limit_]
-    
-    #clean params
-    for i in params:
-        i=''.join(i.split())
-        if i==None:
-            i=''
-        
+    param_names = ['SELECT', 'FROM,' 'WHERE,' 'GROUP BY', 'HAVING', 'ORDER BY', 'LIMIT']
+
+    #clean params, generate sql
+    sql = ""
+    for i,j in enumerate(params):
+        j=''.join(j.split())
+        sql.join(param_names[i]+' '+j)
 
     #confirm query
-    print(f"""
-            SELECT {_select_}
-            FROM {_from_}
-            WHERE {_where_}
-            GROUP BY {_groupby_}
-            HAVING {_having_}
-            ORDER BY {_orderby_}
-            LIMIT {_limit_}
-            """)
+    print(sql)
     confirm = input("Execute Query? [y/n]")
 
     #if confirmed
     if confirm.strip()=='y':
         #attempt query
         try:
-            result = Cursor.execute("""
-                                    SELECT ?
-                                    FROM ?
-                                    WHERE ?
-                                    GROUP BY ?
-                                    HAVING ?
-                                    ORDER BY ?
-                                    LIMIT ?
-                                    """,
-                                    params)
+            result = Cursor.execute(sql, params)
+            result.fetchall()
         except sqlite3.Error as error:
-            print("Bad query, try again", error)
+            print("Bad query:", error)
     #if denied, try query entry again
     elif confirm.strip()=='n':
         pass
