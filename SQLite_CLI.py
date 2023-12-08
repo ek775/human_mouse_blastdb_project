@@ -41,9 +41,9 @@ while q==True:
     #clean params, generate sql
     sql = ""
     for i,j in enumerate(params):
-        j=''.join(j.split())
+        j=' '.join(j.split())
         if (j != None):
-            sql.join(param_names[i]+' '+j+' ')
+            sql = sql+' '.join([param_names[i], j])
         else:
             continue
 
