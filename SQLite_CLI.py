@@ -42,7 +42,10 @@ while q==True:
     sql = ""
     for i,j in enumerate(params):
         j=''.join(j.split())
-        sql.join(param_names[i]+' '+j)
+        if j!='':
+            sql.join(param_names[i]+' '+j)
+        else:
+            continue
 
     #confirm query
     print(sql)
