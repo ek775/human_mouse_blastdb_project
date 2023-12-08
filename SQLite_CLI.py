@@ -36,7 +36,7 @@ while q==True:
     _limit_ = input("LIMIT:")
     
     params = [_select_, _from_, _where_, _groupby_, _having_, _orderby_, _limit_]
-    param_names = ['SELECT', 'FROM,' 'WHERE,' 'GROUP BY', 'HAVING', 'ORDER BY', 'LIMIT']
+    param_names = ['SELECT', 'FROM', 'WHERE', 'GROUP BY', 'HAVING', 'ORDER BY', 'LIMIT']
 
     #clean params, generate sql
     sql = ""
